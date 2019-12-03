@@ -48,4 +48,10 @@ is.numeric(Selected_min_data)
 group_by(sep_BOM_Data, Station_number)
 
 
+#as above with pipes
+separate(BOM_data, col=Temp_min_max, into = c("temp_min", "temp_max"), sep = "/") %>%
+  filter(Rainfall != "-", temp_min != "-", temp_max != "-") %>%
+  group_by(Station_number) %>%
+  summarise(num_rows=n())
+
 
